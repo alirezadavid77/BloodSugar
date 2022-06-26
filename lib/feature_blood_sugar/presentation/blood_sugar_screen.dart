@@ -1,8 +1,6 @@
+import 'package:blood_sugar/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
-import '../../core/constants/constants.dart';
 import 'blood_sugar_controller.dart';
 
 class BloodSugarScreen extends StatelessWidget {
@@ -59,14 +57,7 @@ class BloodSugarScreen extends StatelessWidget {
                               child: Container(
                                 decoration: const BoxDecoration(
                                   color: kColorPallete4,
-                                  // boxShadow: [
-                                  //   // BoxShadow(
-                                  //   //   color: Colors.grey.withOpacity(0.3),
-                                  //   //   spreadRadius: 1,
-                                  //   //   blurRadius: 6,
-                                  //   //   offset: const Offset(0, 3),
-                                  //   // ),
-                                  // ],
+
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(10),
                                   ),
@@ -80,7 +71,7 @@ class BloodSugarScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            '${_controller.bloodSugarList[index].persistenceTime.substring(11, 19)}',
+                                            _controller.bloodSugarList[index].persistenceTime.substring(11, 19),
                                             style: kLoginTitleStyle,
                                           ),
                                           Row(
@@ -90,7 +81,7 @@ class BloodSugarScreen extends StatelessWidget {
                                                 style: kLoginTitleStyle,
                                               ),
                                               Text(
-                                                '${_controller.bloodSugarList[index].bloodSugar.toString()}',
+                                                _controller.bloodSugarList[index].bloodSugar.toString(),
                                                 style: kLoginTitleStyle1,
                                               ),
                                               const Icon(
@@ -107,11 +98,11 @@ class BloodSugarScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            '${_controller.bloodSugarList[index].assignDate}',
+                                            _controller.bloodSugarList[index].assignDate,
                                             style: kLoginTitleStyle,
                                           ),
                                           Text(
-                                            '${_controller.bloodSugarList[index].measureState}',
+                                            _controller.bloodSugarList[index].measureState,
                                             style: kLoginTitleStyle,
                                           ),
                                         ],
@@ -140,7 +131,7 @@ class BloodSugarScreen extends StatelessWidget {
                               )
                             : Container()
                         : Container()
-                    //   :Container(),
+
                   ]),
           ),
         );

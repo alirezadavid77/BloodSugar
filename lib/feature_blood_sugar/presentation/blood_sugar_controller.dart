@@ -51,8 +51,7 @@ class BloodSugarController extends GetxController {
     {
       if (hasNextPage.value &&
           !isFirstLoadRunning.value &&
-          !isLoadMoreRunning.value
-          ) {
+          !isLoadMoreRunning.value) {
         isLoadMoreRunning.value = true;
         currentPage.value += 1;
         var dataState = await _bloodSugarUseCase
