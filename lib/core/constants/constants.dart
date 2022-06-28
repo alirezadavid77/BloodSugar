@@ -432,30 +432,7 @@ List<String> farsiCollection = [
   'ی',
 ];
 
-Map<String, String> namesOfInsurances = {
-  'ALB': 'البرز',
-  'ASI': 'آسیا',
-  'KAR': 'کارآفرین',
-  'DAN': 'دانا',
-  'DEY': 'دی',
-  'IRA': 'ایران',
-  'MEL': 'ملت',
-  'MOA': 'معلم',
-  'PAS': 'پاسارگاد',
-  'PAR': 'پارسیان',
-  'RAZ': 'رازی',
-  'SAM': 'سامان',
-  'SAR': 'سرمد',
-  'NOV': 'نوین',
-  'TEJ': 'تجارت',
-  'MA': 'ما',
-  'SIN': 'سینا',
-  'TAA': 'تعاون',
-  'MIH': 'میهن',
-  'ARM': 'آرمان',
-  'HEK': 'حکمت',
-  'KOW': 'کوثر'
-};
+
 
 Map<int, String> orders = {
   1: 'اول',

@@ -29,7 +29,7 @@ class BloodSugarScreen extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(
-              title: const Center(
+              title:  const Center(
                 child: Text(
                   'اندازه گیری قند خون',
                   style: iransans12BoldLightBlack,

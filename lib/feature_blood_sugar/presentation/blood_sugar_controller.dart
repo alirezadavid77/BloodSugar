@@ -1,5 +1,8 @@
+import 'package:blood_sugar/core/datasources/db/db.dart';
+import 'package:blood_sugar/core/datasources/db/db_helper/db_helper.dart';
 import 'package:blood_sugar/core/resources/data_state.dart';
 import 'package:blood_sugar/core/utils/dart_utils.dart';
+import 'package:blood_sugar/core/utils/utils.dart';
 import 'package:blood_sugar/feature_blood_sugar/domain/entity/blood_sugar_entity.dart';
 import 'package:blood_sugar/feature_blood_sugar/domain/entity/blood_sugar_result_entity.dart';
 import 'package:blood_sugar/feature_blood_sugar/domain/usecase/blood_sugar_usecase.dart';
@@ -17,6 +20,8 @@ class BloodSugarController extends GetxController {
   Rx<bool> isFirstLoadRunning = false.obs;
   Rx<bool> hasNextPage = true.obs;
   Rx<bool> isLoadMoreRunning = false.obs;
+  List<BloodSugarSampleData> dblist = [];
+  DbHelper dbHelper = DbHelper(Utils.appDatabase);
 
   RxList<BloodSugarResultEntity> bloodSugarList =
       <BloodSugarResultEntity>[].obs;
@@ -36,10 +41,10 @@ class BloodSugarController extends GetxController {
       data?.let((response) {
         if (response.results.isNotEmpty) {
           bloodSugarList(response.results);
-
           isFirstLoadRunning.value = false;
         }
       });
+      insertBloodSugarSampleToDb(bloodSugarList);
     }
     if (dataState is DataFailed) {}
     isFirstLoadRunning.value = false;
@@ -62,6 +67,7 @@ class BloodSugarController extends GetxController {
             if (response.results.isNotEmpty) {
               bloodSugarList.addAll(response.results);
               count.value = response.count;
+              insertBloodSugarSampleToDb(bloodSugarList);
               if (bloodSugarList.length == count.value) {
                 hasNextPage.value = false;
               }
@@ -77,5 +83,19 @@ class BloodSugarController extends GetxController {
         return dataState;
       } else {}
     }
+  }
+
+  void insertBloodSugarSampleToDb(
+      RxList<BloodSugarResultEntity> bloodSugarList) async {
+    for (int i = 0; i < bloodSugarList.length; i++) {
+      await dbHelper.insertNewBloodSugar(BloodSugarSampleData(
+        assignDate: bloodSugarList[i].assignDate,
+        measureState: bloodSugarList[i].assignDate,
+        bloodSugar: bloodSugarList[i].bloodSugar,
+        id: bloodSugarList[i].bloodSugarId,
+      ));
+    }
+    dblist = await dbHelper.getAllBloodSugar();
+    print('saved listss : $dblist');
   }
 }
