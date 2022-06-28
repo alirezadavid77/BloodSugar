@@ -90,7 +90,7 @@ class BloodSugarController extends GetxController {
     for (int i = 0; i < bloodSugarList.length; i++) {
       await dbHelper.insertNewBloodSugar(BloodSugarSampleData(
         assignDate: bloodSugarList[i].assignDate,
-        measureState: bloodSugarList[i].assignDate,
+        measureState: bloodSugarList[i].measureState,
         bloodSugar: bloodSugarList[i].bloodSugar,
         id: bloodSugarList[i].bloodSugarId,
       ));
